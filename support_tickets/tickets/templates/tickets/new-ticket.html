@@ -1,0 +1,30 @@
+{% extends 'tickets/base.html' %}
+
+{% block head_title %}New Ticket{% endblock %}
+{% load bootstrap4 %}
+
+{% block base_content %}
+    <div class="row">
+        <div class="col-10 col-md-8 col-lg-6 mx-auto">
+            <div class="main-wrapper">
+                <div class="form-wrapper clearfix">
+                    <form action="/tickets/" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col">
+                                {% bootstrap_field form.issue %}
+                            </div>
+                            <div class="col">
+                                {% bootstrap_field form.severity %}
+                            </div>
+                        </div>
+                        {% bootstrap_field form.description placeholder="Give us more information about your issue" %}
+                        <div class="submit-ticket">
+                            {% bootstrap_button "Submit" button_type="submit" button_class="btn-primary float-right" %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'tickets/base.html' %}
+
+{% block head_title %}Ticket Submitted{% endblock %}
+
+{% block content %}
+    <h6>Thank you {{ ticket.name }}</h6>
+    <div>
+        You ticket has been submitted.
+        To view more details about your ticket click
+        <a href="{% url 'ticket' ticket.uuid %}">here</a>.
+    </div>
+{% endblock %}

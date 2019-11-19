@@ -1,0 +1,65 @@
+{% extends 'tickets/base.html' %}
+
+{% block head_title %}Ticket {{ ticket.id }}{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="ticket-info-wrapper">
+        <div class="ticket-info-title">
+            <div class="h3">Ticket {{ ticket.id }}</div>
+            <div class="ticket-info main">
+                <span class="ticket-info-has-reply">
+                    {% if ticket.reply_set.all %}
+                        <span class="badge badge-success">Has reply</span>
+                    {% else %}
+                        <span class="badge badge-danger">No reply</span>
+                    {% endif %}
+                </span>
+                <span class="ticket-info-issue"> &middot; {{ ticket.get_issue_display }}</span>
+                <span class="ticket-info-severity"> &middot; {{ ticket.get_severity_display }}</span>
+            </div>
+        </div>
+        <div class="ticket-box">
+            <div class="ticket-box-head">
+                <span class="ticket-info-name"><strong>{{ ticket.name }}</strong></span>
+                <span class="ticket-info-date">submitted on {{ ticket.issue_submit_date }}</span>
+            </div>
+            <div class="ticket-box-main">
+                <span class="ticket-info-description">{{ ticket.description }}</span>
+            </div>
+        </div>
+    </div>
+    {% if ticket.reply_set.all %}
+        {% for reply in ticket.reply_set.all %}
+            <div class="ticket-reply-wrapper">
+                <div class="ticket-box">
+                    <div class="ticket-box-head">
+                        <span class="ticket-info-name"><strong>{{ reply.owner.first_name }} {{ reply.owner.last_name }}</strong></span>
+                        <span class="ticket-info-date">submitted on {{ reply.date }}</span>
+                    </div>
+                    <div class="ticket-box-main">
+                        <span class="ticket-info-description">{{ reply.answer }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        {% if form %}
+            <div class="reply-form-box">
+                <div class="reply-form-head">
+                    <span class="ticket-info-name"><strong>{{ request.user }}</strong></span>
+                </div>
+                <div class="reply-form-wrapper clearfix">
+                    <form action="{% url 'ticket' ticket.uuid %}" method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout="inline" %}
+                        {% buttons %}
+                            <button type="submit" class="btn btn-success float-right">Reply</button>
+                        {% endbuttons %}
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

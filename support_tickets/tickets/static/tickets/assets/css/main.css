@@ -1,0 +1,145 @@
+body {
+    font-size: 16px;
+    margin: 0;
+    color: black;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+header .logo a {
+    color: black;
+}
+
+header .logo a:hover {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.max-width-container{
+    width: 100%;
+}
+
+
+.header-wrapper {
+    margin-top: 2rem;
+}
+
+.navbar-expand-md .container > .max-width-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.new-ticket-button {
+    margin-bottom: 1rem;
+}
+
+.ticket-number {
+    text-decoration: underline;
+}
+
+.login-or {
+    text-align: center;
+}
+
+.ticket-info-title {
+    padding-bottom: 20px;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e6ebf1;
+}
+
+.ticket-reply-wrapper {
+    margin-top: 1rem;
+}
+
+.ticket-box {
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+}
+
+.ticket-box-head {
+    background-color: #f1f8ff;
+    padding: 15px;
+    border-bottom: 1px solid #d1d5da;
+}
+
+.ticket-box-main {
+    padding: 15px;
+}
+
+.reply-form-box {
+    background-color: #f6f8fa;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    margin-top: 1rem;
+    padding: 15px;
+}
+
+.reply-form-wrapper {
+    margin-top: 1rem;
+}
+
+.btn-success {
+    background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+}
+
+.messages-wrapper {
+    margin-top: 1rem;
+}
+
+.table thead th {
+    border-bottom: 0px;
+}
+
+.table td, .table th {
+    border-top: 0px;
+    text-align: center;
+}
+
+.table .clickable-row:hover {
+    cursor: pointer;
+}
+
+.update-profile-message {
+    padding: 0.75rem 0.5rem;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width:767px) {
+    .navbar-expand-md .container > .max-width-container {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media (min-width:768px) {
+    .navbar-expand-md .container > .max-width-container{
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .update-profile-message {
+        padding: 0.75rem 0.75rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .max-width-container {
+        max-width: 980px;
+    }
+}

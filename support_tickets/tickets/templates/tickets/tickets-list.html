@@ -1,0 +1,49 @@
+{% extends 'tickets/base.html' %}
+
+{% block head_title %}Tickets List{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <div class="new-ticket-button clearfix">
+            <a class="btn btn-success float-right" href="{% url 'new_ticket' %}">New ticket</a>
+        </div>
+        <div class="tickets-list">
+            {% if tickets %}
+                <table class="table table-hover">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>Replied</th>
+                            <th>Ticket</th>
+                            <th>Issue</th>
+                            <th>Severity</th>
+                            <th>Date Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in tickets %}
+                        <tr class="clickable-row" href="{% url 'ticket' ticket.uuid %}">
+                            <td>
+                                {% if ticket.reply_set.all %}
+                                <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+                                {% endif %}
+                            </td>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.get_issue_display }}</td>
+                            <td>{{ ticket.get_severity_display }}</td>
+                            <td>{{ ticket.issue_submit_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                There are no tickets.
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="login-message">
+            Sign in to your account to manage your tickets.
+        </div>
+    {% endif %}
+{% endblock %}

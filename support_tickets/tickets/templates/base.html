@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>
+        {% block head_title %}Home{% endblock %}
+        {% block extra_head %}{% endblock %}
+         &middot; support.liopetas.com
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/tickets/assets/css/main.css">
+</head>
+
+<body>
+    {% block body %}
+        <header>
+            {% if request.user.is_authenticated %}
+                <nav class="navbar navbar-expand-md navbar-light bg-light">
+                    <div class="container">
+                        <div class="max-width-container mx-auto">
+                            <a class="navbar-brand bold" href="{% url "home" %}">SUPPORT</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarToggler">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{% url "tickets_list" %}">Ticket List <span class="sr-only">(current)</span></a>
+                                    </li>
+                                </ul>
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUser">
+                                            <div class="dropdown-item">Signed in as</div>
+                                            <h6 class="dropdown-header">
+                                                {% if request.user.first_name or request.user.last_name %}
+                                                    {{ request.user.first_name }} {{ request.user.last_name }}
+                                                {% else %}
+                                                    {{ request.user.username }}
+                                                {% endif %}
+                                            </h6>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url "user-profile" %}">Profile</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url "account_logout" %}">Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            {% else %}
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container">
+                        <div class="max-width-container mx-auto">
+                            <a class="navbar-brand bold" href="{% url "home" %}">SUPPORT</a>
+                            <div class="nav-item float-right">
+                                <a class="btn btn-primary" href="{% url "account_login" %}">Log In</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            {% endif %}
+        </header>
+        <div class="container">
+            <div class="max-width-container mx-auto">
+                {% block base_content %}
+                    <div class="row">
+                        <div class="col mx-auto">
+                            <div class="main-wrapper">
+                                <div class="general-desciption">
+                                    <p>
+                                        Simple, easy to use and open source support ticket service.
+                                        You can find more information and the code on
+                                        <a href="https://github.com/KappaLambda/support-tickets">GitHub</a>.
+                                    </p>
+                                    <p>
+                                        Future features:
+                                        <li>Registration with facebook account</li>
+                                        <li>Tickets manager</li>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+                <div class="row">
+                    <div class="col mx-auto">
+                        <footer>
+                            &copy; KappaLambda
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="/static/tickets/assets/js/main.js"></script>
+
+</body>
+</html>
