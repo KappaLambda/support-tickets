@@ -120,6 +120,12 @@ if [[ ! -d "/srv/www/support-tickets" ]]; then
     cd /srv/www/support-tickets/support_tickets/
     python manage.py migrate
     python manage.py collectstatic --noinput
+else
+    cd /srv/www/support-tickets/
+    pip-sync
+    cd /srv/www/support-tickets/support_tickets/
+    python manage.py migrate
+    python manage.py collectstatic --noinput
 fi
 
 # set nginx
